@@ -1,1 +1,2 @@
 This folders contains a TETRODE (4 neuropixel probes) implementation ASO-based with winsoritazion (WA) as threshold mehtod.
+Hierarchical flow is exploited. The top level is TETRODE_
