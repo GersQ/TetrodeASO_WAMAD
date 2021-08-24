@@ -9,7 +9,7 @@ USE WORK.VHDLTOOL.ALL;
 --BUFFERIZED R/W SIMULTANEOUS
 ENTITY SMOOTHING_BUFF IS
 GENERIC(
-			CHANNEL	: INTEGER:=30; 
+			CHANNEL	: INTEGER:=1; 
 			K			: INTEGER:=4; 
 			N			: INTEGER:=10
 			);
@@ -24,7 +24,8 @@ PORT(
 END SMOOTHING_BUFF;
 
 ARCHITECTURE RTL OF SMOOTHING_BUFF IS 
--- HAMMING FIR COEFFICIENT L=64, K=4 Q9.0
+-- HAMMING FIR COEFFICIENT L=64, K=4 Q9.0, given its symmetry feature it is possible to reduce the number of coefficient to ceil((4k+1)/2).
+-- Moreover, the coefficients are obtained after a scaling process to guarantee an overflow-free operation and let the output be in the same input representation.
 CONSTANT B0: SIGNED (N-1 DOWNTO 0) := TO_SIGNED(5,10);
 CONSTANT B1: SIGNED (N-1 DOWNTO 0) := TO_SIGNED(7,10);
 CONSTANT B2: SIGNED (N-1 DOWNTO 0) := TO_SIGNED(13,10);
