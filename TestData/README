@@ -1,1 +1,18 @@
-
+This folder contains the matlab script used to analyze the error precision of our ASIC implementation based on fixed-point with double precision MATLAB. 
+The dataset R_Awaken.mat content is the follow: 
+                                                  - AwR is the real signal with a SNR of 5.35. This value comes after deleting the spikes detecting and classified by wave_clus
+                                                  - Pattern_TP/_FP: the application window of spike and of noise.
+                                                  - Vppmean the peak to peak voltage value of the average spike shapes
+                                                  - spkt_ch* contains the clusters individuated by the sorting tool clus_wave.
+                                                  - noise_est is a track composed by only neural noise (LFP, thermic and high frequency artifacts)
+                                                  - noiseless is the neural recoring at which the noise has been substracted.
+                                                  
+                                                  Other *.mat contains the integer form Q9.0 of the BPF and FIR filters used within the implementation, after the scaling process.
+                                                  S=S'/x; where S' is the sum of impulse response  and x is the scaling factor chosen to obtain S less than unity. In this way
+                                                  without working on the filter pole (denominator of the transfer function) and scaling the zero (numerator coefficient of filters)
+                                                  we ensure a no-overflow operation. However, this increases the error, but it is simple.
+                                                  
+                                                  *.m is the main script used to test the precision between MATLAB and VHDL, hence double precision and fixed-point representation.
+                                                  
+                                                  N.B: you may notice that the main contribution is given by the quantization process of the filters coefficients as we expected 
+                                                      because of the scaling process.
