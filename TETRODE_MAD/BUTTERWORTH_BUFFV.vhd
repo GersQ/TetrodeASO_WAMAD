@@ -35,15 +35,7 @@ SIGNAL X: STD_LOGIC_VECTOR(N-1 DOWNTO 0);
 
 --FILTER CONSTANTS IIR BUTTERWORTH II ORDER PASSBAND 300HZ-3000HZ.
 --H(Z)=(BO+B1*Z^-1+B2*Z^-2) / (AO+A1*Z^-1+A2*Z^-2)
---COEFFICIENT NOT QUANTIZED Q0.9 #10BIT
---B0=0.5313
---B2=-0.5313
---B1=0
---A1=-0.7213                                             
---A2=0.0629
---A0=1
-
--- Filter Coefficient are different due to the different sampling rate, 20kHz Q1.8
+-- Filter Coefficient  sampling rate, 20kHz Q1.8
 CONSTANT B0: SIGNED(N-1 DOWNTO 0):= TO_SIGNED(49,10); --Q9.0
 CONSTANT B2: SIGNED(N-1 DOWNTO 0):= TO_SIGNED(-49,10); --Q9.0
 CONSTANT A1: SIGNED(N-1 DOWNTO 0):= TO_SIGNED(-336,10); --Q9.0
