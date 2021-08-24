@@ -2,7 +2,10 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
---THE SCRIPT CONTAINS AT THE END THE ADDITIONAL MODULES USED INTO THE MAIN ONE.
+--THE SCRIPT CONTAINS AT THE END THE ADDITIONAL MODULES USED INTO THE MAIN ONE. The architecture follow the suggestion provided in Benkrid et al. 2002.
+-- As general role, for a WINDOW M the median index if extracted as follows: 
+--										1) M is odd then the MEDindex=(M+1)/2
+--										2) M is even then MEDindex=M/2+(M+1)/2
 
 
 
