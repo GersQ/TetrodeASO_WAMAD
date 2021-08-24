@@ -1,11 +1,14 @@
-% addpath('..\..\Rilevazione_Spike_NeuroCube\detection\Data') 
-x=load('DatasetR_Awaken.mat');
+ %% The script is used to compare the floating implementation of algorithm with MATLAB and the fixed-point implementation of ASIC architecture. We use a real dataset names R_Awaken,
+ %%% to perform this test (see README file for the content of the dataset) extracting a frame of 1s. In article we performed several times these steps varying SNR.
+ 
+ 
+ 
+ x=load('DatasetR_Awaken.mat');
  sf=20e+3;
  sampleframe=1*sf;
  Raw=x.AwR(:,1:sampleframe);
  
-OPTIONS.SIGMA.ESTIMATE=4; 
-OPTIONS.SIGMA.N_AVG=64;
+
  windowL=64;
  %% Double-precision ASO-WA
 load('ButtII20kHz.mat') %Q1.8 to Q9.0
@@ -50,9 +53,7 @@ end
 n=size(MEAN_DOUBLE,2);
 nbatch=ceil(size(MEAN_DOUBLE,2)/windowL);
 sigma0=((sum(abs(MEAN_DOUBLE(1:windowL)))*1.25));
-% y_AA=[zeros(size(ymean)) zeros(1,window)];
-% y_MAD=[zeros(size(ymean)) zeros(1,window)];
-% y_WA=[zeros(size(ymean)) zeros(1,window)];
+
 for k=1:nbatch
                 jstrt=(k-1)*windowL+1;
                 if k ~= nbatch
@@ -91,9 +92,6 @@ AP_BIT_MAD_DOUBLE=S_DOUBLE(latency_block)>var_MAD_DOUBLE(latency_block);
 
  %% Fixed-point ASO-WA
 quantizedRaw=num2fixpt(Raw,sfix(10),2^0); %Quantization process
-
-
-
 
 %%Butterworth Filter BPF II order 
 load('ButtII20kHz.mat') %Q1.8 to Q9.0
